@@ -1,4 +1,5 @@
 import {cloneTemplate} from "../lib/utils.js";
+import {initFiltering} from "../components/filtering.js";
 
 /**
  * Инициализирует таблицу и вызывает коллбэк при любых изменениях и нажатиях на кнопки
@@ -23,9 +24,7 @@ export function initTable(settings, onAction) {
     });
 
     // шаг 4
-    const applyFiltering = initFiltering(root.filter.elements, {
-        searchBySeller: settings.indexes.sellers // предполагаем, что indexes переданы в settings
-    });
+    const applyFiltering = initFiltering(root.filter.elements);
 
     // @todo: #1.3 —  обработать события и вызвать onAction()
     // обработка событий 
