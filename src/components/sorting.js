@@ -1,18 +1,19 @@
-import {sortCollection, sortMap} from "../lib/sort.js";
+/* import {rules, createComparison} from "../lib/compare.js"; */
 
-export function initSorting(columns) {
-    return (data, state, action) => {
-        let field = null;
-        let order = null;
+// ПОИСК
+export function initSearching(searchField) {
+    /* // @todo: #5.1 — настроить компаратор
+    const compare = createComparison([
+        rules.skipEmptyTargetValues, // пропускаем пустые значения в state
+        rules.searchMultipleFields(searchField, ['date', 'customer', 'seller'], false) 
+        // searchField — имя поля в state
+        // массив — список полей, по которым ищем
+        // false — означает "без строгого совпадения" (можно частичное)
+    ]);*/
 
-        if (action && action.name === 'sort') {
-            // @todo: #3.1 — запомнить выбранный режим сортировки
-
-            // @todo: #3.2 — сбросить сортировки остальных колонок
-        } else {
-            // @todo: #3.3 — получить выбранный режим сортировки
-        }
-
-        return sortCollection(data, field, order);
-    }
+    return (query, state, action) => { // result заменили на query
+        return state[searchField] ? Object.assign({}, query, { // проверяем, что в поле поиска было что-то введено
+            search: state[searchField], // устанавливаем в query параметр
+        }) : query; // если поле с поиском пустое, просто возвращаем query без изменений
+    } 
 }
