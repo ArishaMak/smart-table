@@ -1,6 +1,8 @@
 import './fonts/ys-display/fonts.css'
 import './style.css';
 
+import { data as sourceData } from "./data/dataset_1.js";
+
 import {initData} from "./data.js";
 import {processFormData} from "./lib/utils.js";
 
@@ -9,6 +11,9 @@ import {initPagination} from "./components/pagination.js";
 import {initSorting} from "./components/sorting.js";
 import {initFiltering} from "./components/filtering.js";
 import {initSearching } from "./components/searching.js";
+
+const api = initData(sourceData);
+/* работа была отклонена без потери итерации? будете ли вы рассматривать те две попытки сдачи за итерацию? в таком случае у меня осталась одна возможность?( */
 
 /**
  * Сбор и обработка полей из таблицы
